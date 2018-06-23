@@ -1,0 +1,90 @@
+---
+author: "author name here"
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+output:
+  pdf_document:
+    keep_tex: true
+editor_options: 
+  chunk_output_type: console
+header-includes:
+- \usepackage{pdflscape, setspace, afterpage, float}
+- \newcommand{\blandscape}{\begin{landscape}}
+- \newcommand{\elandscape}{\end{landscape}}
+---
+
+
+```{r opts-2, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE,
+                      message=FALSE, 
+                      results='hide',
+                      comment=NA)
+
+knitr::opts_chunk$set(root.dir = "~GitHub/unc-dissertation-markdown-template/includes/scripts/paper1",fig.pos="H")
+```
+
+```{r}
+require(knitr)
+require(kableExtra)
+require(tableone)
+require(ggplot2)
+```
+
+# Tables
+
+\singlespace
+
+
+```{r, results='asis'}
+
+data(mtcars)
+dt <- mtcars[1:5, 2:4]
+
+kable(dt,
+      booktabs=T,
+      longtable=T,
+      format="latex",
+      row.names=T,
+      escape=F,
+      caption='List 1.',
+      col.names = c("column 1", "column 2", "column 3")) %>%
+    add_header_above(c(" "=1, "The rest"=2)) %>%
+    kable_styling(latex_options=c("HOLD_position", "scale_down"))
+
+```
+
+\clearpage
+\newpage
+
+
+\blandscape
+
+# Figures
+
+\centering
+
+```{r, fig.keep='all', fig.width=8, fig.height=6,  fig.pos="H"}
+
+# example below copied from https://ggplot2.tidyverse.org/reference/labs.html
+
+p <- ggplot(mtcars, aes(mpg, wt, colour = cyl)) + geom_point()
+
+extra.plot2 = p + labs(colour = "Cylinders")
+
+ggsave("../../figures/fig2.eps", 
+       width = 7, height = 5, units = "in",
+       plot=extra.plot2)
+
+# save it locally so can run this file standalone.
+ggsave("includes/figures/fig2.eps", 
+       width = 7, height = 5, units = "in",
+       plot=extra.plot2)
+
+```
+
+\begin{figure}[H]
+\centering
+\caption{(MS2: Figure 1) Title here.}
+\includegraphics{includes/figures/fig2.eps}
+\end{figure}
+
+\elandscape

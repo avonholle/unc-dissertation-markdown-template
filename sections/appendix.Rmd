@@ -1,0 +1,57 @@
+---
+author: "Ann Von Holle"
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+output:
+  pdf_document:
+    fig_caption: true
+    number_sections: yes
+    pandoc_args:
+    - --filter
+    - C:/Python27/Scripts/pandoc-eqnos.exe
+    toc: yes
+    toc_depth: 3
+  html_document:
+    fig.caption: yes
+    number_sections: yes
+    pandoc_args:
+    - --filter
+    - pandoc-fignos
+    toc: yes
+    toc_depth: '3'
+    toc_float: no
+    xnos-section-numbers: yes
+bibliography: ../includes/bib/lit-review.bib
+---
+
+
+<!-- NOTE: see following link to do landscape mode and be able ot put citations in there: https://stackoverflow.com/questions/25849814/rstudio-rmarkdown-both-portrait-and-landscape-layout-in-a-single-pdf -->
+
+
+\section{List 1}
+
+This is one section with a formula.
+
+$$ y = a + bx $$
+
+\singlespace
+
+\section{Very long title for next section that is meant to take up more than one line in the table of contents so you can verify that those lines are single spaced according to guidelines.}
+
+```{r, results='markup'}
+
+dt <- mtcars[1:5, 1:3]
+
+kable(dt,
+      booktabs=T,
+      longtable=T,
+      format="latex",
+      row.names=T,
+      escape=F,
+      caption='List 1.',
+      col.names = c("column 1", "column 2", "column 3")) %>%
+    add_header_above(c(" "=1, "The rest"=2)) %>%
+    kable_styling(latex_options=c("HOLD_position", "scale_down", "repeat_header"))
+
+```
+
+

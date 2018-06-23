@@ -1,0 +1,10 @@
+
+\usepackage{datagidx}% NOTE: this will not work unless you disable glossaries package
+
+\newgidx{acronym}{{\vspace*{1\baselineskip} \normalfont\bfseries{LIST OF ABBREVIATIONS}}} % 2 line spaced after title
+%\newgidx{acronym}{\large{LIST OF ABBREVIATIONS}} % 2 line spaced after title
+%\DTLgidxCategorySep{1cm}
+
+\DTLgidxSetDefaultDB{acronym}
+\newacro{TC}{Total Cholesterol}
+\newacro{GRS}{Genetic Risk Score}

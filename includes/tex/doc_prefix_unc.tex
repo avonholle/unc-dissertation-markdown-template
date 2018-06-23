@@ -1,0 +1,153 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT SETTINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Title of dissertation}
+\author{Author of dissertation}
+\committee{Person 1}{Person 2}{Person 3}{Person 4}{Person 5}
+\date{\today}
+
+\input{./sections/2_abstract.tex}
+
+\input{./sections/1_dedication.tex}
+
+\pagestyle{plain}
+
+\frontmatter
+
+%\maketitle% Use this command for the correct formatted version of unc dissertation page. This is adapted from the scripts written by UNC Math department graduate students. Can be found at https://github.com/mmalahe/unc-dissertation
+
+% these are from the ..\uncdissertation.cls file
+\maketitlepg
+\makecopyrightpage
+\makeabstractpg
+\makededicationpg
+
+
+
+% NOTE: TO DO: need to go back and make sure I have all LaTex commands I need to get spacing correction after TOC.
+
+% The graduate school requires that entries are double spaced.
+% They also require that multiple lines in a single entry are single spaced.
+% This achieves that by setting \baselineskip (the space between lines)
+% and \parskip (the additional space between paragraphs) directly, then restoring them
+%
+% @todo: Find a more elegant way of achieving this
+
+% Establish original spacings
+% 
+\newlength{\oldbaselineskip}
+\setlength{\oldbaselineskip}{\the\baselineskip}
+\newlength{\oldparskip}
+\setlength{\oldparskip}{\the\parskip}
+
+%Set spacings for these sections
+\setlength{\baselineskip}{0.5\oldbaselineskip}
+\setlength{\parskip}{0.5\oldbaselineskip}
+
+
+% %%%%%%%%%%%%%% START of revised code 
+
+% Create a ``Table of Contents''
+% According to template copied from http://www.cs.unc.edu/~bbb/diss/unc-dissertation-template.zip
+% see frontmatter/contents.tex
+
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
+\renewcommand{\cfttoctitlefont}{\textbf}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftdotsep}{1.5}
+\cftsetrmarg{1.0in}
+
+\setlength{\cftbeforetoctitleskip}{61pt}
+\setlength{\cftaftertoctitleskip}{28pt}
+
+
+% format chapter entries like other entries
+\renewcommand{\cftchapfont}{\normalfont}
+\renewcommand{\cftchappagefont}{\normalfont}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+
+\setlength{\cftbeforechapskip}{15pt}
+\setlength{\cftbeforesecskip}{10pt}
+\setlength{\cftbeforesubsecskip}{10pt}
+\setlength{\cftbeforesubsubsecskip}{10pt}
+
+
+\clearpage
+\phantomsection
+
+% See comment at https://tex.stackexchange.com/questions/115921/wrong-numeration-in-toc-longer-then-one-page
+% to fix the roman numeral numbering problem in front matter.
+% Has to do with crazy compiler issue 
+% NOTE: this is a really slow process so comment out next line until 100% ready to finalize document. The roman numeral lines in toc will then be correct.
+\phantom{\cite{?}} 
+
+\begin{singlespace}
+\begin{center}
+\tableofcontents
+\end{center}
+\end{singlespace}
+
+
+% Create a ``List of Tables''
+\renewcommand{\listtablename}{LIST OF TABLES}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+
+\setlength{\cftbeforelottitleskip}{-11pt}
+\setlength{\cftafterlottitleskip}{22pt}
+\renewcommand{\cftlottitlefont}{\hfill\textbf}
+\renewcommand{\cftafterlottitle}{\hfill}
+
+\setlength{\cftbeforetabskip}{10pt}
+
+\begin{singlespace}
+\listoftables
+\end{singlespace}
+
+
+% Create a ``List of Figures''
+
+% NOTE: to add these parts to toc got this idea from https://github.com/rosannav/thesis_in_rmarkdown/tree/master/example_thesis
+
+
+\renewcommand{\listfigurename}{LIST OF FIGURES}
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+
+\setlength{\cftbeforeloftitleskip}{-11pt}
+\setlength{\cftafterloftitleskip}{22pt}
+\renewcommand{\cftloftitlefont}{\hfill\textbf}
+\renewcommand{\cftafterloftitle}{\hfill}
+
+\setlength{\cftbeforefigskip}{10pt}
+\cftsetrmarg{1.0in}
+
+\begin{singlespace}
+\listoffigures
+\end{singlespace}
+
+
+
+% %%%%%%%%%%%%%  END of revised code  
+
+
+
+% Restore original spacings
+\setlength{\baselineskip}{1.0\oldbaselineskip}
+\setlength{\parskip}{1.0\oldparskip}
+
+
+\renewcommand{\listabbreviationname}{LIST OF ABBREVIATIONS}
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listabbreviationname  }
+\listofabbreviations
+
+
+%\setcounter{secnumdepth}{4}
+%\setcounter{tocdepth}{4}
+
+\mainmatter

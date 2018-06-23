@@ -1,0 +1,91 @@
+---
+classoption: report
+documentclass: uncdissertation
+fontsize: 12pt
+bibliography: includes/bib/lit-review.bib
+output:
+  pdf_document:
+    includes:
+      fig.caption: true
+      before_body: includes/tex/doc_prefix_unc.tex
+      in_header: includes/tex/header-unc.tex
+    keep_tex: yes
+    number_sections: yes
+    pandoc_args:
+    - --filter
+    - C:/Python27/Scripts/pandoc-eqnos.exe
+    toc: no
+---
+
+
+```{r include=FALSE}
+#csl: includes/scripts/vancouver-authoryear.csl
+#link-citations: yes
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+<!-- NOTES: 
+
+1. Some template code for formatting based on work from https://github.com/jvcasill/ua_thesis_rmd. All LaTeX code is copied from https://github.com/mmalahe/unc-dissertation including the .cls file.
+
+2. Be careful of unicode characters, especially in the bibliography file. Very hard to find and can kick up errors that prevents the file from compiling. For example, a U+2AB unicode character that was not recognized and kept the program from compiling. or 'Package inputenc Error: Unicode char Î± (U+3B1)', which was actually in a journal title in the .bib file. Dashes are also problematic. See header-unc.tex to avoid that problem and add characters with 'declareunicodecharacters'.
+
+Using pandoc-eqnos python program in pandoc to number equations:  https://github.com/tomduck/pandoc-eqnos
+-->
+
+<!-- Include introductory chapters. Also includes watermark text. -->
+
+<!-- =========================== -->
+<!-- START MAIN MATTER HERE -->
+<!-- =========================== -->
+
+\chapter{\uppercase{Manuscript 1 --- Title here}}
+\addcontentsline{toc}{chapter}{\uppercase{Chapter 1: Manuscript 1 --- Title here}}
+
+
+```{r, child='./sections/ms1.Rmd', eval=T}
+```
+
+<!-- Include tables and figures for first manuscript -->
+
+```{r, child='includes/scripts/paper1/tables-figs.Rmd', eval=T}
+```
+
+\chapter{\uppercase{Manuscript 2 --- Title here. Make this a very long title to demonstrate that the title is single spaced in the table of contents as required by the graduate school.}}
+\addcontentsline{toc}{chapter}{\uppercase{Manuscript 2 --- Title here. Make this a very long title to demonstrate that the title is single spaced in the table of contents as required by the graduate school.}}
+
+```{r, child='./sections/ms2.Rmd', eval=T}
+```
+
+<!-- Include tables and figures for first manuscript -->
+
+```{r, child='includes/scripts/paper2/tables-figs.Rmd', eval=T}
+```
+
+
+<!-- Include references -->
+
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+
+\backmatter
+
+<!-- Include appendices -->
+
+\appendix
+
+\chapter{\uppercase{Background for power calculations}}\label{app1}
+\addcontentsline{toc}{chapter}{\uppercase{Appendix: Useful information}}
+
+```{r, child='./sections/appendix.Rmd', eval=T}
+```
+
+
+\chapter*{REFERENCES}
+\addcontentsline{toc}{chapter}{REFERENCES}
+\printbibliography{}

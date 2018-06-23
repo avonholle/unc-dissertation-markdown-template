@@ -1,0 +1,165 @@
+
+%Font packages
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+% List of acronyms
+\usepackage{longtable}
+%\usepackage[acronym]{glossaries}%NOTE: this will NOT work in markdown to latex. have to have access to the latex file with same name to access the glossary.
+
+\usepackage{lscape}
+\usepackage{tipa}
+
+%% Extra packages that I added -----------------
+\usepackage{textgreek}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{kvoptions}
+%\usepackage{afterpage}
+\usepackage{rotating}%for sidewaystable in xtable
+%\usepackage{hyperref}% to highlight links in different colors
+%\hypersetup{
+%    colorlinks=true,
+%    linkcolor=blue,
+%    filecolor=magenta,      
+%    urlcolor=cyan,
+%}
+
+% see the following link for info on biblatex sort order issue: 
+% http://tex.stackexchange.com/questions/51434/biblatex-citation-order
+\usepackage[style=numeric,
+%        hyperref=true,
+        maxbibnames=99,
+        firstinits=true,
+        uniquename=init,
+        doi=true,
+%        backref=true,
+        backend=biber]{biblatex}
+
+\usepackage{float}% for placement of figures and tables
+
+\usepackage{tikz}%for DAG
+\usetikzlibrary{arrows.meta,positioning}
+
+\usepackage{array}%for smaller landscape tables
+\usepackage{graphicx}
+
+\newcolumntype{Z}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usepackage{tabulary}
+
+\usepackage[bf,singlelinecheck=off]{caption}
+\usepackage{eso-pic,graphicx,transparent}% see http://stackoverflow.com/questions/32748248/watermark-in-rmarkdown
+
+% see https://tex.stackexchange.com/questions/258688/how-to-remove-double-spacing-in-table-cell-wrap
+% \usepackage{etoolbox}
+% \BeforeBeginEnvironment{tabular}{\begin{singlespace}}
+% \AfterEndEnvironment{tabular}{\end{singlespace}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GLOSSARIES AND ABBREVIATIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To update the printed glossary, you need to run:
+% - pdflatex dissertation
+% - makeglossaries dissertation
+% - pdflatex dissertation
+% On Windows, you might need to install Perl first.
+
+%% MY own note: Since I am doing this in Rmd and not LaTex need to make a separate
+%% LaTex file, glossary.tex, and add the acronyms there.
+
+%\newacronym{unc}{UNC}{The University of North Carolina at Chapel Hill}
+%\makeglossaries
+
+% NOTE: the glossaries package in LaTex does not work when using markdown. Trying another approach from "Using LaTex to Write a PhD Thesis" by Nicola L.C. Talbot
+
+
+\input{includes/tex/glossaryfile.tex} % has acronyms
+%\input{includes/tex/glossaryfile-math.tex} % has glossaries
+
+%\usepackage{datagidx}% NOTE: this will not work unless you disable glossaries package
+%  \newgidx{glossary}{Glossary}
+%  \newgidx{acronym}{List of Abbreviations}
+%  
+%  \DTLgidxSetDefaultDB{acronym}
+%  \newacro{TC}{Total Cholesterol}
+%no need to call makeglossaries.
+
+
+% \newgidx{glossary}{Glossary}
+% \newgidx{acronym}{List of Abbreviations}
+
+
+% \DTLgidxSetDefaultDB{glossary}
+% \newterm
+% [%
+% description={Total cholesterol},% brief description
+% ]%
+% {tc}% the name
+
+
+
+%% Math Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{amssymb}
+\usepackage{geometry}
+
+%% NOTE: I commented this section out. Not sure why but it kept my markdown file from compiling, kicking up a 'error 43'. Do I need to put this back? not sure.
+%% Reduce spacing between paragraph and section title %%%%%%%
+%% @todo: Put this modification in the class file itself.
+% \usepackage{titlesec}
+% \titlespacing*{\section}
+% {0pt}{-5pt}{0pt}
+% \titlespacing*{\subsection}
+% {0pt}{-5pt}{0pt}
+\usepackage{indentfirst}   %Indents first paragraphs in every section.
+
+\setlength\parindent{24pt}
+
+%% Flush footnotes to the left
+\usepackage[hang,flushmargin]{footmisc}
+%% Places footnotes immediately below horizontal rule
+\setlength{\footnotesep}{0pt}
+
+%% Normal LaTeX or pdfLaTeX? %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{ifpdf}
+
+% %% Packages for Graphics & Figures %%%%%%%%%%%%%%%%%%%%%%%%%%
+% \ifpdf %%Inclusion of graphics via \includegraphics{file}
+% 	\usepackage[pdftex]{graphicx} %%graphics in pdfLaTeX
+% \else
+% 	\usepackage[dvips]{graphicx} %%graphics and normal LaTeX
+% \fi
+
+
+\usepackage{adjustbox}
+
+%% EXTRA
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pdflscape}
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+
+\colorlet{vlg}{gray!20}
+
+\usepackage{tocloft}
+
+% see https://tex.stackexchange.com/questions/4152/how-do-i-prevent-widow-orphan-lines
+%\usepackage[all]{nowidow}
+% Disallow all widows and orphans (clubs)
+% \widowpenalty=10000
+% \clubpenalty=10000
+

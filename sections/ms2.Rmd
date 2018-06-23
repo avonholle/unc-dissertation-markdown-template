@@ -1,0 +1,22 @@
+# Introduction
+
+This is another introduction.
+
+Mention of a name \acr{GRS} for the first time. Mention of the acronym for the second time, \acr{GRS}.
+
+# Methods
+
+This is another methods section. Another citation here [@labarthe_epidemiology_2011].
+
+## Study sample
+
+Put a description here with subheading.
+
+
+# Results
+
+Put some results here.
+
+# Discussion
+
+Put discussion here.
