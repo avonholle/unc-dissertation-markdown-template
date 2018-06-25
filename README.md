@@ -1,6 +1,6 @@
-R markdown template for UNC formatted dissertation
+This repository has a minimal working example of a R markdown template to create a UNC formatted dissertation.
 
-This repository contains files to create a formatted dissertation according to [UNC graduate school standards](http://gradschool.unc.edu/academics/thesis-diss/guide/). 
+The files create a formatted dissertation according to [UNC graduate school standards](http://gradschool.unc.edu/academics/thesis-diss/guide/). 
 
 I want to note that all of the code I have here is really just modified scripts from other sources/people. 
 
