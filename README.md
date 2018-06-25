@@ -10,7 +10,7 @@ I want to note that all of the code I have here is really just modified scripts 
 
 # Steps to run the file in R Studio
 
-1. Must have be able to run R, RStudio and LaTex files. If not, then the following steps will not be possible.
+1. Must be able to run R and RStudio as well as compile LaTex files. If not, then the following steps will not be possible.
 2. Download the repo to a local folder on your computer.
 3. Open [dissertation.Rmd](dissertation.Rmd) in RStudio.
     * Hit the 'Knit PDF' button in the window containing the dissertation.Rmd code.
